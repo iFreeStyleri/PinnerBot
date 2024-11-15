@@ -16,10 +16,11 @@ namespace Pinner.Implementations.Callbacks
 
         }
 
-        public override Task ExecuteAsync(Update update, CancellationToken token)
+        public override async Task ExecuteAsync(Update update, CancellationToken token)
         {
-            //_client.SendPhoto(update.CallbackQuery.Message.Chat, )
-            return Task.CompletedTask;
+            var callback = update.CallbackQuery;
+            
+            await _client.SendPhoto(-1002312040693, InputFile.FromUri(callback.Message.Caption));
         }
     }
 }

@@ -1,11 +1,9 @@
-﻿using IronPython.Hosting;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Pinner.Abstractions;
 using Pinner.Implementations;
 using Telegram.Bot;
-using Microsoft.Scripting.Hosting;
 using Python.Runtime;
 
 namespace Pinner

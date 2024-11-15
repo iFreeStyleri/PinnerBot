@@ -8,9 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AngleSharp" Version="1.1.2" />
-    <PackageReference Include="AngleSharp.XPath" Version="2.0.4" />
-    <PackageReference Include="IronPython" Version="3.4.1" />
     <PackageReference Include="pythonnet" Version="3.0.4" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
     <PackageReference Include="Telegram.Bot" Version="22.0.2" />

@@ -7,18 +7,27 @@ using Pinner.Common;
 using Python.Runtime;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Microsoft.Extensions.Configuration;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Pinner.Implementations.Commands
 {
     public class SearchPhotoCommand : TextCommand
     {
-        public SearchPhotoCommand(string data, ITelegramBotClient client) : base(data, client)
+        private readonly IConfiguration _config;
+        public SearchPhotoCommand(string data, ITelegramBotClient client, IConfiguration config) : base(data, client)
         {
+            _config = config;
         }
 
         public override async Task ExecuteAsync(Update update, CancellationToken token)
         {
+            var admins = _config.GetSection("Admins").Get<long[]>();
+            if (!admins.Any(s => s == update.Message.From.Id))
+            {
+                await _client.SendMessage(update.Message.Chat.Id, "Вне доступа");
+                return;
+            }
             var searchText = update.Message.Text.Replace("/search ", "").Replace("/search@SkyEllegentBot ", "");
             if (string.IsNullOrWhiteSpace(searchText)) return;
 
