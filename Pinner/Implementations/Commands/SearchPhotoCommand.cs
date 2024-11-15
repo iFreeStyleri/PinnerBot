@@ -19,7 +19,7 @@ namespace Pinner.Implementations.Commands
 
         public override async Task ExecuteAsync(Update update, CancellationToken token)
         {
-            var searchText = update.Message.Text.Replace("/search ", "").Replace("/search@SkyEllegentBot", "");
+            var searchText = update.Message.Text.Replace("/search ", "").Replace("/search@SkyEllegentBot ", "");
             if (string.IsNullOrWhiteSpace(searchText)) return;
 
             if (searchText.Length <= 3)
