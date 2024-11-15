@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Reflection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Pinner.Abstractions;
@@ -10,6 +11,7 @@ namespace Pinner
 {
     public static class Program
     {
+        public static string AppPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public static ITelegramBotClient Client { get; private set; }
         public static async Task Main(string[] args)
         {

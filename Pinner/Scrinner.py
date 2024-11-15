@@ -14,13 +14,12 @@ def get_image_url(query: str):
         if os.path.exists(output_folder):
             shutil.rmtree(output_folder)
         os.makedirs(output_folder, exist_ok=True)
-        counter = randint(1, 2)
-        details = pinscrape.scraper.scrape(query, output_folder, {}, 1, counter)
+        details = pinscrape.scraper.scrape(query, output_folder, {}, 1, 10)
 
         print(f"Дядя отработал: {details}")
 
         if details["isDownloaded"] and details['urls_list']:
-            image_url = details['urls_list'][0]
+            image_url = details['urls_list']
             print(f"Урлы: {image_url}")
             return image_url
         else:
