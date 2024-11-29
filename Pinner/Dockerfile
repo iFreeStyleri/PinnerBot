@@ -23,8 +23,7 @@ COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Pinner.dll"]
 
 FROM python:3.12
-WORKDIR "/src/Pinner"
+WORKDIR /app/publish
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-
-
 
