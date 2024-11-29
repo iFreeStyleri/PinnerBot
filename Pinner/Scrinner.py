@@ -5,16 +5,15 @@ from pinscrape import pinscrape
 import os
 import shutil
 
-def get_image_url(query: str):
+def get_image_url(query: str, directory : str, count):
     try:
-        output_folder = "output"
 
         print(f"Дядя работает: {query}")
 
-        if os.path.exists(output_folder):
-            shutil.rmtree(output_folder)
-        os.makedirs(output_folder, exist_ok=True)
-        details = pinscrape.scraper.scrape(query, output_folder, {}, 1, 10)
+        if os.path.exists(directory):
+            shutil.rmtree(directory)
+        os.makedirs(directory, exist_ok=True)
+        details = pinscrape.scraper.scrape(query, directory, {}, 1, count)
 
         print(f"Дядя отработал: {details}")
 

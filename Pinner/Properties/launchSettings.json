@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Pinner": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

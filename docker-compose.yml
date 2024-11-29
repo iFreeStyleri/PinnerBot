@@ -1,0 +1,10 @@
+version: '3.9'
+
+services:
+  pinner:
+    image: ${DOCKER_REGISTRY-}pinner
+    build:
+      context: .
+      dockerfile: Pinner/Dockerfile
+
+
