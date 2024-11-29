@@ -77,7 +77,7 @@ namespace Pinner.Implementations.Commands
                 using (Py.GIL())
                 {
                     dynamic p = Py.Import("Scrinner");
-                    p.get_image_url(tag?.Query, directory, 10);
+                    p.get_image_url(tag?.Query, directory, 100);
                 }
             });
         }
