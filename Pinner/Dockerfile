@@ -26,5 +26,3 @@ FROM python:3.12
 WORKDIR "/src/Pinner"
 RUN pip install -r requirements.txt
 
-
-
