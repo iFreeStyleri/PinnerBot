@@ -3,6 +3,8 @@
 FROM mcr.microsoft.com/dotnet/runtime:6.0 AS base
 WORKDIR /app
 
+
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Pinner/Pinner.csproj", "Pinner/"]
@@ -19,3 +21,10 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Pinner.dll"]
+
+FROM python:3.12
+WORKDIR "/src/Pinner"
+RUN pip install -r requirements.txt
+
+
+
