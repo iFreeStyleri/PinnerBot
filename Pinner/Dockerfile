@@ -1,9 +1,9 @@
 #See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+USER root
 
 FROM mcr.microsoft.com/dotnet/runtime:6.0 AS base
 WORKDIR /app
 
-USER root
 
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
@@ -24,7 +24,7 @@ COPY --from=publish /app/publish .
 
 WORKDIR /app/publish
 RUN sudo apt-get update
-RUN sudo apt-get install python3.12
+RUN sudo apt-get install -y python3.12
 
 RUN pip install --upgrade pip
 RUN pip freeze > requirements.txt
