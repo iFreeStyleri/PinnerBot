@@ -23,7 +23,7 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 
 WORKDIR /app/publish
-RUN apt-get update && apt-get upgrade
+RUN apt-get update
 RUN apt-get install python-is-python3
 
 RUN pip install --upgrade pip
