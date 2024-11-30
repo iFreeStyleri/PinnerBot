@@ -3,8 +3,6 @@
 FROM mcr.microsoft.com/dotnet/runtime:6.0 AS base
 WORKDIR /app
 
-RUN apt update && apt upgrade
-RUN apt install python-is-python3
 
 
 
@@ -25,6 +23,7 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 
 WORKDIR /app/publish
+RUN apt install python-is-python3
 RUN pip install --upgrade pip
 RUN pip freeze > requirements.txt
 RUN pip install -r requirements.txt
