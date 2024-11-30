@@ -23,7 +23,9 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 
 WORKDIR /app/publish
-RUN apt install python-is-python3
+RUN apt-get update && apt-get upgrade
+RUN apt-get install python-is-python3
+
 RUN pip install --upgrade pip
 RUN pip freeze > requirements.txt
 RUN pip install -r requirements.txt
