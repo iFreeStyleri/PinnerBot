@@ -31,7 +31,6 @@ RUN apt-get update -y \
     && python3 -m venv venv
 
 RUN pip install --upgrade pip
-RUN pip freeze > requirements.txt
 RUN pip install -r requirements.txt
 
 
