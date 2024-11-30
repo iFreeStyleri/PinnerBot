@@ -22,7 +22,9 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Pinner.dll"]
 
-FROM python:3.12
+RUN apt update && apt upgrade
+RUN apt install python-is-python3
+
 WORKDIR /app/publish
 RUN pip install --upgrade pip
 RUN pip freeze > requirements.txt
