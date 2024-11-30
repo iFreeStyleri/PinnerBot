@@ -22,7 +22,7 @@ COPY --from=publish /app/publish .
 
 WORKDIR /app/publish
 RUN apt-get update
-RUN apt-get install -y python3.12
+RUN apt-get install -y python
 
 RUN pip install --upgrade pip
 RUN pip freeze > requirements.txt
