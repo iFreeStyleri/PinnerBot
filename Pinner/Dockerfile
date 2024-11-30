@@ -22,7 +22,7 @@ COPY --from=publish /app/publish .
 
 WORKDIR /app/publish
 RUN apt-get update
-RUN apt install software-properties-common
+RUN apt install -y software-properties-common
 RUN add-apt-repository -y ppa:deadsnakes/ppa
 RUN apt-get update
 RUN apt-get install -y glob
