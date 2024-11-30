@@ -3,8 +3,6 @@
 FROM mcr.microsoft.com/dotnet/runtime:6.0 AS base
 WORKDIR /app
 
-USER root
-
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
@@ -23,8 +21,8 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 
 WORKDIR /app/publish
-RUN sudo apt-get update
-RUN sudo apt-get install -y python3.12
+RUN apt-get update
+RUN apt-get install -y python3.12
 
 RUN pip install --upgrade pip
 RUN pip freeze > requirements.txt
