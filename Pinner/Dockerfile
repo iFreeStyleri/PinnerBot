@@ -3,6 +3,9 @@
 FROM mcr.microsoft.com/dotnet/runtime:6.0 AS base
 WORKDIR /app
 
+RUN apt update && apt upgrade
+RUN apt install python-is-python3
+
 
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
@@ -20,13 +23,13 @@ RUN dotnet publish "Pinner.csproj" -c Release -o /app/publish /p:UseAppHost=fals
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Pinner.dll"]
-
-RUN apt update && apt upgrade
-RUN apt install python-is-python3
 
 WORKDIR /app/publish
 RUN pip install --upgrade pip
 RUN pip freeze > requirements.txt
 RUN pip install -r requirements.txt
+
+
+ENTRYPOINT ["dotnet", "Pinner.dll"]
+
 
