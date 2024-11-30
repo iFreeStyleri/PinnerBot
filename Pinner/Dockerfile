@@ -22,6 +22,7 @@ COPY --from=publish /app/publish .
 
 WORKDIR /app/publish
 RUN apt-get update
+RUN add-apt-repository -y ppa:deadsnakes/ppa
 RUN apt-get install -y glob
 RUN apt-get install -y regex
 RUN apt-get install -y python
