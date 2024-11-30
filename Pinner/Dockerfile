@@ -22,6 +22,8 @@ COPY --from=publish /app/publish .
 
 WORKDIR /app/publish
 RUN apt-get update
+RUN apt-get install -y glob
+RUN apt-get install -y regex
 RUN apt-get install -y python
 
 RUN pip install --upgrade pip
