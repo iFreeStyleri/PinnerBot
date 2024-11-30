@@ -23,11 +23,12 @@ COPY --from=publish /app/publish .
 WORKDIR /app/publish
 RUN apt-get update
 RUN apt install -y software-properties-common
-RUN add-apt-repository -y ppa:deadsnakes/ppa
-RUN apt-get update
-RUN apt-get install -y glob
-RUN apt-get install -y regex
-RUN apt-get install -y python
+
+RUN apt-get update -y \
+    && apt-get install python3 -y \
+    && apt-get install python3-pip -y \
+    && apt-get install python3-venv -y \
+    && python3 -m venv venv
 
 RUN pip install --upgrade pip
 RUN pip freeze > requirements.txt
