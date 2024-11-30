@@ -25,5 +25,6 @@ ENTRYPOINT ["dotnet", "Pinner.dll"]
 FROM python:3.12
 WORKDIR /app/publish
 RUN pip install --upgrade pip
+RUN pip freeze > requirements.txt
 RUN pip install -r requirements.txt
 
