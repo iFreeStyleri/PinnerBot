@@ -8,6 +8,8 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Pinner/Pinner.csproj", "Pinner/"]
 COPY ["Pinner/requirements.txt", "./"]
+COPY ["Pinner.DAL/Pinner.DAL.csproj", "Pinner.DAL/"]
+
 RUN apt-get update
 RUN apt install -y software-properties-common
 RUN apt-get update -y \
@@ -16,7 +18,6 @@ RUN apt-get update -y \
     && apt-get install python3-venv -y \
     && python3 -m venv venv
 
-COPY ["Pinner.DAL/Pinner.DAL.csproj", "Pinner.DAL/"]
 RUN dotnet restore "Pinner/Pinner.csproj"
 COPY . .
 WORKDIR "/src/Pinner"
