@@ -7,6 +7,15 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Pinner/Pinner.csproj", "Pinner/"]
+COPY ["Pinner/requirements.txt", "./"]
+RUN apt-get update
+RUN apt install -y software-properties-common
+RUN apt-get update -y \
+    && apt-get install python3 -y \
+    && apt-get install python3-pip -y \
+    && apt-get install python3-venv -y \
+    && python3 -m venv venv
+
 COPY ["Pinner.DAL/Pinner.DAL.csproj", "Pinner.DAL/"]
 RUN dotnet restore "Pinner/Pinner.csproj"
 COPY . .
@@ -19,21 +28,6 @@ RUN dotnet publish "Pinner.csproj" -c Release -o /app/publish /p:UseAppHost=fals
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-
-WORKDIR /app/publish
-RUN apt-get update
-RUN apt install -y software-properties-common
-RUN apt-get update -y \
-    && apt-get install python3 -y \
-    && apt-get install python3-pip -y \
-    && apt-get install python3-venv -y \
-    && python3 -m venv venv
-
-WORKDIR /src
-
-COPY ["Pinner/requirements.txt", "./"]
-RUN pip install --no-cache-dir -r requirements.txt
-
 WORKDIR /app/publish
 ENTRYPOINT ["dotnet", "Pinner.dll"]
 
