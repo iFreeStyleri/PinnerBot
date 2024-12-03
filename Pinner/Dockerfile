@@ -23,7 +23,6 @@ COPY --from=publish /app/publish .
 WORKDIR /app/publish
 RUN apt-get update
 RUN apt install -y software-properties-common
-
 RUN apt-get update -y \
     && apt-get install python3 -y \
     && apt-get install python3-pip -y \
