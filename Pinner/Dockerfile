@@ -30,6 +30,7 @@ RUN apt-get update -y \
     && apt-get install python3-venv -y \
     && python3 -m venv venv
 
+WORKDIR "/src/Pinner"
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
