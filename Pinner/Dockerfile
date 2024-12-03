@@ -30,9 +30,10 @@ RUN apt-get update -y \
     && apt-get install python3-venv -y \
     && python3 -m venv venv
 
-WORKDIR "/src/Pinner"
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+WORKDIR /src
+
+COPY ["Pinner/requirements.txt", "./"]
+RUN pip install --no-cache-dir -r requirements.txt
 
 
 ENTRYPOINT ["dotnet", "Pinner.dll"]
