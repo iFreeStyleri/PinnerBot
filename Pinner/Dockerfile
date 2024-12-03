@@ -34,7 +34,7 @@ WORKDIR /src
 COPY ["Pinner/requirements.txt", "./"]
 RUN pip install --no-cache-dir -r requirements.txt
 
-
+WORKDIR /app/publish
 ENTRYPOINT ["dotnet", "Pinner.dll"]
 
 
